@@ -1,0 +1,27 @@
+name: Publish Dry Run
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  publish_dry_run:
+    name: Validate Pub.dev Readiness
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Validate publishing dry-run
+        run: flutter pub publish --dry-run

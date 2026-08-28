@@ -1,0 +1,6 @@
+/build/
+example/build/
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
